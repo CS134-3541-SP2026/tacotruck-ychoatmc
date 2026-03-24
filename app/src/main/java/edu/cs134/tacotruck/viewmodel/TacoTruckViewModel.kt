@@ -27,4 +27,12 @@ class TacoTruckViewModel : ViewModel() {
             return "🌶️ Warning: Spicy overload!"
         return ""
     }
+
+    fun getStatus(): String{
+        if(_order.value.count() > 10)
+            return "🔴 Busy"
+        if(_order.value.count() > 6)
+            return "🟡 Moderate"
+        return "🟢 Available"
+    }
 }

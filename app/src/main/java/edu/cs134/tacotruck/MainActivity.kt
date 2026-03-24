@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Icon
@@ -21,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.lifecycle.viewmodel.compose.viewModel
+import edu.cs134.tacotruck.view.KitchenScreen
 import edu.cs134.tacotruck.view.MenuScreen
 import edu.cs134.tacotruck.view.OrderScreen
 import edu.cs134.tacotruck.viewmodel.TacoTruckViewModel
@@ -68,6 +70,11 @@ fun TacoTruckApp() {
                     viewModel = restaurantViewModel,
                     modifier = Modifier.padding(innerPadding)
                 )
+
+                AppDestinations.KITCHEN -> KitchenScreen(
+                    viewModel = restaurantViewModel,
+                    modifier = Modifier.padding(innerPadding)
+                )
             }
         }
     }
@@ -78,5 +85,6 @@ enum class AppDestinations(
     val icon: ImageVector,
 ) {
     MENU("Menu", Icons.Default.Menu),
-    ORDER("Order", Icons.Default.ShoppingCart)
+    ORDER("Order", Icons.Default.ShoppingCart),
+    KITCHEN ("Kitchen", Icons.Default.Info)
 }
