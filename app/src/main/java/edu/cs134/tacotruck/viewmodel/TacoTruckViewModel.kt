@@ -21,4 +21,10 @@ class TacoTruckViewModel : ViewModel() {
     fun getTotal(): Double {
         return _order.value.sumOf { it.price }
     }
+
+    fun getAlert(): String{
+        if(_order.value.count{it.name.contains("Taco")} > 3)
+            return "🌶️ Warning: Spicy overload!"
+        return ""
+    }
 }
