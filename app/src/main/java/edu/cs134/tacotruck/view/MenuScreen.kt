@@ -5,21 +5,23 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import edu.cs134.tacotruck.model.MenuItem
+import edu.cs134.tacotruck.viewmodel.MenuModel
 import edu.cs134.tacotruck.viewmodel.TacoTruckViewModel
 
 @Composable
 fun MenuScreen(
-    viewModel: TacoTruckViewModel,
+    viewModel: MenuModel,
     modifier: Modifier
 ) {
 
-    // Taco Truck menu items
-    val taco = MenuItem("🌮 Taco", 3.0)
-    val burrito = MenuItem("🌯 Burrito", 7.0)
-    val guac = MenuItem("🥑 Guacamole", 2.5)
-    val horchata = MenuItem("🥛 Horchata", 2.0)
-    val quesadilla = MenuItem("🌯 Quesadilla", 5.0)
+//    Taco Truck menu items
+//    val taco = MenuItem("🌮 Taco", 3.0)
+//    val burrito = MenuItem("🌯 Burrito", 7.0)
+//    val guac = MenuItem("🥑 Guacamole", 2.5)
+//    val horchata = MenuItem("🥛 Horchata", 2.0)
+//    val quesadilla = MenuItem("🌯 Quesadilla", 5.0)
 
     Column(
         modifier = modifier
@@ -30,6 +32,11 @@ fun MenuScreen(
 
         Text("🌮 Taco Truck Menu", style = MaterialTheme.typography.headlineMedium)
 
+        viewModel.menu.forEach {
+            addButton(it)
+        }
+
+        /**
         Button(onClick = { viewModel.addItem(taco) }) {
             Text("Add Taco ($3)")
         }
@@ -48,8 +55,19 @@ fun MenuScreen(
 
         Button(onClick = { viewModel.addItem(horchata) }) {
             Text("Add Horchata ($2)")
-        }
+        }*/
 
         Spacer(modifier = Modifier.height(20.dp))
     }
+}
+
+@Composable
+fun addButton(
+    item: MenuItem,
+    viewModel: TacoTruckViewModel = viewModel()
+){
+    Button(onClick = {viewModel.addItem(item)}) {
+        Text("Add ${item.name} ($${item.price}")
+    }
+
 }
